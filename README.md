@@ -1,3 +1,2 @@
-# Information
-I scaped data from mlslistings.com of different characteristics of houses that have recently sold in my city of Folsom, CA and cleaned it into a Pandas DataFrame. 
-I then used that data to implement a linear regression model to predict the price of a home given its characteristics.
+# Project Overview
+The purpose of this project is to predict the sale price of a house in the city of Folsom, California given six of its features: square feet, year built, lot square feet, number of bedrooms, number of bathrooms and garage spaces. 
