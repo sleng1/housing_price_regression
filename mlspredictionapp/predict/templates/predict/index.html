@@ -1,0 +1,74 @@
+{% extends "predict/layout.html" %}
+
+{% block body %}
+<style>
+    .grid {
+        display: grid;
+        grid-template-columns: 320px 320px;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+    .grid input {
+        height: 50px;
+        width: 300px;
+        font-size: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 2px solid black;
+    }
+    .submit {
+        height: 50px;
+        width: 225px;
+        font-size: 30px;
+        border-radius: 10px;
+        border: 2px solid black;
+        background-color: gainsboro;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .submit:hover {
+        cursor: pointer;
+        outline: 3px solid cornflowerblue;
+        border: 2px solid gray;
+    }
+    #pred {
+        margin-top: 50px;
+    }
+</style>
+<script>
+    function isNotFinite(input) {
+        return isFinite(input) === false
+    }
+    function validate() {
+        const responses = [
+            document.forms["reg"]["square_feet"].value,
+            document.forms["reg"]["beds"].value,
+            document.forms["reg"]["baths"].value,
+            document.forms["reg"]["lot_sqft"].value,
+            document.forms["reg"]["year_built"].value,
+            document.forms["reg"]["garages"].value
+        ];
+        if (responses.some(isNotFinite)) {
+            alert("All form inputs must be numeric!");
+            return false;
+        }
+    }
+</script>
+<h2>Fill in your house's stats here.</h2>
+<form name="reg" method="POST" onsubmit="return validate()" action="{% url 'index' %}">
+    {% csrf_token %}
+    <div class="grid">
+        {% for input in form %}
+        {{ input }}
+        {% endfor %}
+    </div> 
+    <input class="submit" type="submit" value="Predict Worth">
+    <input class="submit" type="submit" formaction="{% url 'saved' %}" value="Save">
+</form>
+{% if prediction %}
+<h2 id="pred">Your house is estimated to be worth ${{ prediction }}!</h2>
+{% endif %}
+{% endblock %}

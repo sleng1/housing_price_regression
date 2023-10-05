@@ -1,0 +1,41 @@
+{% extends 'predict/layout.html' %}
+
+{% block body %}
+<h2>Saved Predictions</h2>
+<style>
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid gray;
+        border-collapse: collapse;
+    }
+    td, th {
+        border: 1px solid gray;
+        padding: 5px;
+    }
+</style>
+<table>
+    <thead>
+        <tr>
+            <th>House</th>
+            <th>Beds</th>
+            <th>Baths</th>
+            <th>Square Feet</th>
+            <th>Year Built</th>
+            <th>Garages</th>
+            <th>Lot Square Feet</th>
+            <th>Predicted Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for house in houses %}
+        <tr>
+            <th>{{ forloop.counter }}</th>
+            {% for x in house %}
+            <th>{{ x }}</th>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
