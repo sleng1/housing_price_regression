@@ -1,41 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 
 <html lang="en">
-    
     <head>
         <title>Predict Your Home Price</title>
-        <style>
-            * {
-                font-family: sans-serif;
-                text-align: center;
-            }
-            .grid0 {
-                display: grid;
-                grid-template-columns: 12.5% 75% 12.5%;
-                border-bottom: 1px solid gray;
-                padding-bottom: 20px
-            }
-            #sub {
-                display: inline;
-            }
-            #index, #saved {
-                color: black;
-                text-decoration: none;
-            }
-            #index {
-                text-align: left;
-                margin-left: 30px;
-            }
-            #saved {
-                text-align: right;
-                margin-right: 30px;
-            }
-            #index:hover, #saved:hover {
-                text-decoration: underline;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'predict/styles.css' %}">
     </head>
-
     <body>
         <h1 id="title">MLS Predictions</h1>
         <div class="grid0">
